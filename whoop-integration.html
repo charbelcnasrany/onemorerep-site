@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OneMoreRep × WHOOP — Integration UX</title>
+<style>
+  :root { --bg:#0A0A0D; --card:#15151A; --card2:#1C1C22; --orange:#FF5A1F; --text:#F4F4F5; --sub:#9A9AA3; --green:#22C55E; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,'Segoe UI',Roboto,sans-serif; line-height:1.55; }
+  main { max-width:860px; margin:0 auto; padding:40px 20px 80px; }
+  h1 { font-size:26px; letter-spacing:-0.5px; margin-bottom:4px; } h1 span { color:var(--orange); }
+  .sub { color:var(--sub); font-size:14px; margin:0 0 28px; }
+  h2 { font-size:13px; letter-spacing:2px; color:var(--sub); text-transform:uppercase; margin:36px 0 14px; }
+  p { font-size:15px; color:#D4D4D8; }
+  .row { display:flex; gap:16px; flex-wrap:wrap; }
+  .phone { background:var(--card); border:1.5px solid #26262E; border-radius:28px; padding:18px 14px; width:290px; }
+  .phone .screen-title { font-size:11px; letter-spacing:1.5px; color:var(--sub); text-transform:uppercase; margin-bottom:12px; }
+  .util { display:flex; align-items:center; gap:10px; background:var(--card2); border-radius:14px; padding:13px 14px; font-size:13.5px; font-weight:700; }
+  .util small { display:block; font-weight:500; color:var(--sub); font-size:11.5px; }
+  .util + .util { margin-top:10px; }
+  .feedcard { background:var(--card2); border-radius:16px; overflow:hidden; }
+  .feedhead { display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:13px; font-weight:700; }
+  .avatar { width:28px; height:28px; border-radius:14px; background:var(--orange); display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .photo { height:130px; background:linear-gradient(135deg,#23232B,#2E2E38); display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:12px; }
+  .feedfoot { display:flex; align-items:center; gap:6px; padding:10px 12px; font-size:12.5px; font-weight:600; }
+  .vbadge { margin-left:auto; color:var(--green); font-size:11.5px; font-weight:800; display:flex; gap:3px; align-items:center; }
+  .note { background:rgba(255,90,31,.08); border:1.2px solid rgba(255,90,31,.3); border-radius:14px; padding:14px 16px; font-size:14px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  td, th { text-align:left; padding:10px 12px; border-bottom:1px solid #23232B; vertical-align:top; }
+  th { color:var(--sub); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .ok { color:var(--green); } .no { color:#F87171; }
+  .flow { counter-reset: step; }
+  .flow li { list-style:none; position:relative; padding:0 0 14px 40px; font-size:14.5px; color:#D4D4D8; }
+  .flow li::before { counter-increment: step; content: counter(step); position:absolute; left:0; top:-2px; width:26px; height:26px; border-radius:13px; background:var(--orange); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; }
+</style>
+</head>
+<body>
+<main>
+  <h1>OneMore<span>Rep</span> × WHOOP — Integration UX</h1>
+  <p class="sub">Prepared for WHOOP app review · OneMoreRep is a private social fitness app: users check in at a gym (GPS + Google Places verified) and friends they explicitly added cheer them on.</p>
+
+  <h2>Why WHOOP</h2>
+  <p>WHOOP workout data is used for exactly one thing: <b>confirming that a recorded
+  workout happened around the time of a gym check-in</b>. A confirmed check-in shows
+  the same verification badge with the source noted ("Verified · WHOOP"). It grants
+  no extra rewards or status — WHOOP data confirms, it never elevates one user above
+  another.</p>
+
+  <h2>Screen 1 · Connecting (Profile tab)</h2>
+  <div class="row">
+    <div class="phone">
+      <div class="screen-title">You tab — before</div>
+      <div class="util">⌚ <div>Connect WHOOP<small>workouts confirm your check-ins</small></div></div>
+    </div>
+    <div class="phone">
+      <div class="screen-title">You tab — after OAuth</div>
+      <div class="util">⌚ <div>WHOOP connected<small>tap anytime to disconnect</small></div></div>
+    </div>
+  </div>
+  <ol class="flow" style="margin-top:16px">
+    <li>User taps "Connect WHOOP" → standard WHOOP OAuth page opens in the browser (scopes: read:workout, read:profile, offline).</li>
+    <li>Tokens are exchanged and stored <b>server-side only</b> (Supabase edge function + locked table). The mobile app never sees or stores tokens.</li>
+    <li>Disconnecting is one tap and deletes our stored tokens immediately.</li>
+  </ol>
+
+  <h2>Screen 2 · The result (friend feed)</h2>
+  <div class="row">
+    <div class="phone">
+      <div class="screen-title">Check-in without WHOOP</div>
+      <div class="feedcard">
+        <div class="feedhead"><div class="avatar">C</div> Charbel</div>
+        <div class="photo">user's gym photo</div>
+        <div class="feedfoot">🏋️ checked in at Rebalance DXB <span class="vbadge">✓ Verified</span></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="screen-title">Check-in confirmed by WHOOP</div>
+      <div class="feedcard">
+        <div class="feedhead"><div class="avatar">C</div> Charbel</div>
+        <div class="photo">user's gym photo</div>
+        <div class="feedfoot">🏋️ checked in at Rebalance DXB <span class="vbadge">✓ Verified · WHOOP</span></div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:14px">That badge suffix is the <b>entire visible footprint</b> of WHOOP data in the app.
+  No strain, recovery, HR, sleep, or any other metric is displayed, stored, or used.</p>
+
+  <h2>Data usage</h2>
+  <table>
+    <tr><th>WHOOP data</th><th>Used?</th><th>Purpose</th></tr>
+    <tr><td>Workout start/end times</td><td class="ok">Yes</td><td>Time-overlap match against the user's own gym check-in</td></tr>
+    <tr><td>Workout id</td><td class="ok">Yes</td><td>Stored once to prevent one workout confirming two check-ins</td></tr>
+    <tr><td>Profile (user id)</td><td class="ok">Yes</td><td>Routing incoming webhooks to the right account</td></tr>
+    <tr><td>Strain / HR / calories / sleep / recovery</td><td class="no">No</td><td>Never read, stored, or displayed</td></tr>
+  </table>
+
+  <h2>Privacy & security</h2>
+  <div class="note">
+    Tokens live exclusively server-side (never on-device) · workout confirmation is
+    computed server-side and cannot be spoofed by the client · data is visible only to
+    friends the user explicitly added · disconnect deletes tokens instantly · webhook
+    signatures verified (HMAC) · full policy:
+    <a style="color:var(--orange)" href="privacy.html">privacy policy</a>.
+  </div>
+</main>
+</body>
+</html>
