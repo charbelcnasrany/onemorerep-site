@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="index, follow" />
+<title>Community &amp; Content Guidelines — RepCall</title>
+<style>
+  :root {
+    --ink: #1a1512;
+    --ink-soft: #5c534c;
+    --bg: #fbf9f7;
+    --card: #ffffff;
+    --line: #ece7e1;
+    --brand: #e24a12;      /* Ember orange, darkened for AA contrast on white */
+    --brand-tint: #fdf1ea;
+    --radius: 14px;
+    --maxw: 820px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 20px 80px;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; }
+  header.masthead {
+    padding: 48px 0 8px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .brandmark {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 800; letter-spacing: -0.3px; font-size: 18px; color: var(--brand);
+    text-transform: none;
+  }
+  .brandmark .dot {
+    width: 12px; height: 12px; border-radius: 999px; background: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-tint);
+  }
+  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.15; letter-spacing: -1px; margin: 18px 0 6px; }
+  .dates { color: var(--ink-soft); font-size: 14px; margin: 0 0 4px; }
+  .dates strong { color: var(--ink); }
+  h2 {
+    font-size: 22px; letter-spacing: -0.4px; margin: 44px 0 12px; padding-top: 8px;
+    scroll-margin-top: 20px;
+  }
+  h3 { font-size: 17px; margin: 26px 0 8px; }
+  p, li { color: var(--ink); }
+  a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
+  .lead { font-size: 17px; color: var(--ink-soft); }
+  .callout {
+    background: var(--brand-tint);
+    border: 1px solid #f6d9c8;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .callout p { margin: 0; }
+  .note {
+    background: #fff9ec; border: 1px solid #f3e3bd; border-radius: var(--radius);
+    padding: 14px 16px; font-size: 14.5px; color: #6b5a2e; margin: 20px 0;
+  }
+  .toc {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 22px; margin: 24px 0 8px;
+  }
+  .toc h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-soft); margin: 0 0 10px; padding: 0; }
+  .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+  .toc li { margin: 4px 0; break-inside: avoid; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  code, .ph {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  .ph {
+    background: #fde8e8; color: #a11; border-radius: 5px; padding: 1px 6px;
+    border: 1px solid #f5cccc; white-space: nowrap;
+  }
+  ul, ol { padding-left: 22px; }
+  li { margin: 6px 0; }
+  .pill { display: inline-block; background: var(--brand-tint); color: var(--brand); font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; vertical-align: middle; }
+  .yes { color: #1f7a3d; font-weight: 700; }
+  .no { color: #b5341a; font-weight: 700; }
+  footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 13.5px; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+  @media (max-width: 620px) {
+    .toc ol { columns: 1; }
+    body { padding: 0 16px 64px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #f2ece6; --ink-soft: #b6aaa0; --bg: #17120f; --card: #211a16;
+      --line: #362c25; --brand: #ff7a45; --brand-tint: #2a1a12;
+    }
+    .callout { border-color: #5a3a26; }
+    .note { background: #251e12; border-color: #4a3d1f; color: #d9c79a; }
+    .ph { background: #3a1f1f; color: #ffb3b3; border-color: #5a2d2d; }
+    .yes { color: #6bd897; }
+    .no { color: #ff9b82; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <span class="brandmark"><span class="dot"></span> RepCall</span>
+  <h1>Community &amp; Content Guidelines</h1>
+  <p class="dates"><strong>Effective date:</strong> 14 July 2026</p>
+  <p class="dates"><strong>Last updated:</strong> 14 July 2026</p>
+</header>
+
+<p class="lead">RepCall exists to help a small circle of friends motivate each other to show up and train. It should feel supportive, a little competitive, and safe. These Guidelines explain what is and is not allowed, and what we do when someone crosses the line. They are part of our <a href="terms-of-service.html">Terms of Service</a>: breaking them can get your content removed or your account banned.</p>
+
+<div class="callout">
+  <p><strong>The deal in one line.</strong> Motivate, never mock. Be real, be decent, respect other people's privacy and consent. We have <strong>zero tolerance for objectionable content and abusive users</strong>, and we act on reports — normally within about <strong>24 hours</strong>.</p>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#spirit">The spirit of RepCall</a></li>
+    <li><a href="#allowed">What's welcome</a></li>
+    <li><a href="#not-allowed">What's not allowed</a></li>
+    <li><a href="#privacy-consent">Other people's privacy &amp; consent</a></li>
+    <li><a href="#authentic">Keep it authentic</a></li>
+    <li><a href="#report-block">Report &amp; block tools</a></li>
+    <li><a href="#enforcement">How we enforce &amp; our 24-hour commitment</a></li>
+    <li><a href="#appeals">If we get it wrong</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</nav>
+
+<h2 id="spirit">1. The spirit of RepCall</h2>
+<p>The whole point of RepCall is friendly social pressure among people who actually know each other: you prove you trained, your friends see it, and everyone keeps each other going. Encouragement, hype, and a bit of rivalry are the fuel. Cruelty, harassment, and shaming are not. When in doubt, ask yourself: would I say this to a friend I want to keep? If not, don't post it.</p>
+
+<h2 id="allowed">2. What's welcome</h2>
+<ul>
+  <li><span class="yes">Yes</span> — real check-ins from real workouts, at any kind of workout venue.</li>
+  <li><span class="yes">Yes</span> — hyping your friends up with reactions and preset nudges.</li>
+  <li><span class="yes">Yes</span> — photos and videos of <em>you</em> and your own training.</li>
+  <li><span class="yes">Yes</span> — friendly competition over streaks and consistency.</li>
+  <li><span class="yes">Yes</span> — celebrating other people's progress, comebacks, and effort.</li>
+</ul>
+
+<h2 id="not-allowed">3. What's not allowed</h2>
+<p>The following are prohibited. Content that breaks these rules may be removed, and accounts that post it may be suspended or permanently banned.</p>
+<ul>
+  <li><span class="no">No</span> nudity, pornography, or sexually explicit content, and no sexual content involving anyone who is or appears to be a minor. Any sexualisation of minors is reported to the relevant authorities.</li>
+  <li><span class="no">No</span> harassment, bullying, threats, stalking, or intimidation of anyone.</li>
+  <li><span class="no">No</span> hate speech or content that attacks or demeans people based on race, ethnicity, national origin, religion, sex, gender identity, sexual orientation, disability, age, or any other protected characteristic.</li>
+  <li><span class="no">No</span> violence, gore, or content that promotes or glorifies self-harm, eating disorders, dangerous "challenges", or unsafe training that risks serious injury.</li>
+  <li><span class="no">No</span> content promoting steroids, illegal drugs, or other unlawful substances or activity.</li>
+  <li><span class="no">No</span> illegal content, or content that violates UAE law.</li>
+  <li><span class="no">No</span> impersonation of another person, or pretending to be someone you're not.</li>
+  <li><span class="no">No</span> spam, scams, advertising, or unsolicited promotion.</li>
+  <li><span class="no">No</span> posting other people's private information, or content that infringes someone's copyright, trademark, or other rights.</li>
+</ul>
+
+<h2 id="privacy-consent">4. Other people's privacy &amp; consent</h2>
+<p>RepCall involves cameras in shared spaces, so consent matters:</p>
+<ul>
+  <li>Do not photograph or film other people without their permission.</li>
+  <li>Never capture or post images or video in locker rooms, changing rooms, showers, bathrooms, or any place where people expect privacy — even of yourself, if others may be in frame.</li>
+  <li>Do not post anything that identifies, exposes, or targets another person without their consent.</li>
+</ul>
+
+<h2 id="authentic">5. Keep it authentic</h2>
+<p>RepCall runs on "proof, not claims." Don't fake it:</p>
+<ul>
+  <li>Don't spoof or fake your location, or check in somewhere you're not.</li>
+  <li>Don't manipulate streaks, verification, or workout stats, or use someone else's device or wearable to do so.</li>
+  <li>Don't post someone else's photos or videos as if they were your own workout.</li>
+</ul>
+
+<h2 id="report-block">6. Report &amp; block tools</h2>
+<p>You have two tools built into the app, available right where content and people appear:</p>
+<ul>
+  <li><strong>Report</strong> — flag a check-in or a user that breaks these Guidelines. Reports go to us for review and are readable only by our team.</li>
+  <li><strong>Block</strong> — instantly cut ties with a user. Blocking removes the friend connection both ways and prevents them from adding you again. You can review and undo your blocks in Settings.</li>
+</ul>
+<p>Reporting is confidential — the person you report is not told who reported them.</p>
+
+<h2 id="enforcement">7. How we enforce &amp; our 24-hour commitment</h2>
+<div class="callout">
+  <p><strong>Our commitment:</strong> we aim to review reported content and take action on it — including <strong>removing the content and removing the users who post it</strong> — within approximately <strong>24 hours</strong> of a report.</p>
+</div>
+<p>Depending on the severity and history, action may include removing content, issuing a warning, restricting or removing features, temporarily suspending an account, or permanently banning it. Serious violations — such as sexual content involving minors, credible threats, or clearly illegal content — can result in an <strong>immediate permanent ban</strong> with no prior warning, and may be reported to the relevant authorities. We may also remove content we detect ourselves, not only content that is reported. Enforcement decisions are made in our reasonable judgement, and we may prioritise the most serious reports first.</p>
+
+<h2 id="appeals">8. If we get it wrong</h2>
+<p>Moderation is not perfect. If you believe we removed your content or actioned your account by mistake, email <a href="mailto:hello@repcall.app">hello@repcall.app</a> and tell us what happened. We'll take a fair look. We may decline to share details of a decision where doing so would compromise another person's safety or privacy, or an investigation.</p>
+
+<h2 id="contact">9. Contact</h2>
+<p>To report something urgent, or to ask about these Guidelines, contact us at:</p>
+<p><strong>RepCall</strong><br />
+Email: <a href="mailto:hello@repcall.app">hello@repcall.app</a></p>
+<p>If you or someone else is in immediate danger, contact your local emergency services first.</p>
+
+<footer>
+  <p>These Community &amp; Content Guidelines form part of the RepCall <a href="terms-of-service.html">Terms of Service</a> and apply to the RepCall mobile application. © 2026 RepCall. All rights reserved.</p>
+</footer>
+
+</div>
+</body>
+</html>
