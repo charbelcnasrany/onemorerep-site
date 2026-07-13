@@ -3,104 +3,158 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OneMoreRep × WHOOP — Integration UX</title>
+<title>RepCall × WHOOP — Integration UX</title>
 <style>
-  :root { --bg:#0A0A0D; --card:#15151A; --card2:#1C1C22; --orange:#FF5A1F; --text:#F4F4F5; --sub:#9A9AA3; --green:#22C55E; }
+  :root { --bg:#0A0A0D; --card:#15151A; --card2:#1C1C22; --orange:#FF5A1F; --text:#F4F4F5; --sub:#9A9AA3; --green:#35D08A; --whoop:#8C7BFF; --line:rgba(255,255,255,.08); --tint:rgba(255,90,31,.14); }
   body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,'Segoe UI',Roboto,sans-serif; line-height:1.55; }
-  main { max-width:860px; margin:0 auto; padding:40px 20px 80px; }
-  h1 { font-size:26px; letter-spacing:-0.5px; margin-bottom:4px; } h1 span { color:var(--orange); }
-  .sub { color:var(--sub); font-size:14px; margin:0 0 28px; }
-  h2 { font-size:13px; letter-spacing:2px; color:var(--sub); text-transform:uppercase; margin:36px 0 14px; }
+  main { max-width:900px; margin:0 auto; padding:44px 20px 90px; }
+  h1 { font-size:27px; letter-spacing:-0.5px; margin:0 0 4px; } h1 span { color:var(--orange); }
+  .sub { color:var(--sub); font-size:14px; margin:0 0 26px; max-width:680px; }
+  h2 { font-size:12px; letter-spacing:2px; color:var(--sub); text-transform:uppercase; margin:40px 0 6px; }
+  h2 + .lead { margin:0 0 16px; font-size:15px; color:#D4D4D8; }
   p { font-size:15px; color:#D4D4D8; }
-  .row { display:flex; gap:16px; flex-wrap:wrap; }
-  .phone { background:var(--card); border:1.5px solid #26262E; border-radius:28px; padding:18px 14px; width:290px; }
-  .phone .screen-title { font-size:11px; letter-spacing:1.5px; color:var(--sub); text-transform:uppercase; margin-bottom:12px; }
-  .util { display:flex; align-items:center; gap:10px; background:var(--card2); border-radius:14px; padding:13px 14px; font-size:13.5px; font-weight:700; }
-  .util small { display:block; font-weight:500; color:var(--sub); font-size:11.5px; }
-  .util + .util { margin-top:10px; }
+  b { color:var(--text); }
+  .row { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; }
+  .phone { background:var(--card); border:1.5px solid #26262E; border-radius:26px; padding:16px 13px; width:280px; }
+  .cap { font-size:11px; letter-spacing:1.2px; color:var(--sub); text-transform:uppercase; margin-bottom:11px; }
+
+  .util { display:flex; align-items:center; gap:11px; background:var(--card2); border-radius:14px; padding:13px 14px; font-size:14px; font-weight:700; }
+  .util .ic { width:30px; height:30px; border-radius:9px; background:rgba(140,123,255,.18); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+  .util small { display:block; font-weight:500; color:var(--sub); font-size:11.5px; margin-top:1px; }
+  .util .state { margin-left:auto; font-size:11.5px; font-weight:800; }
+  .state.on { color:var(--green); } .state.off { color:var(--orange); }
+
+  /* pull sheet */
+  .sheet { background:var(--card2); border-radius:16px; padding:14px; }
+  .sheet .st { font-size:14px; font-weight:800; }
+  .sheet .ssub { font-size:12px; color:var(--sub); margin:2px 0 12px; }
+  .srcbtn { display:flex; align-items:center; gap:10px; background:#111116; border-radius:12px; padding:12px; }
+  .srcbtn .ic { width:30px; height:30px; border-radius:8px; background:rgba(140,123,255,.18); display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .srcbtn b { font-size:13px; } .srcbtn small { display:block; color:var(--sub); font-size:11px; font-weight:600; }
+  .srcbtn .dl { margin-left:auto; color:var(--sub); }
+
+  /* feed card + stats strip */
   .feedcard { background:var(--card2); border-radius:16px; overflow:hidden; }
-  .feedhead { display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:13px; font-weight:700; }
-  .avatar { width:28px; height:28px; border-radius:14px; background:var(--orange); display:flex; align-items:center; justify-content:center; font-size:13px; }
-  .photo { height:130px; background:linear-gradient(135deg,#23232B,#2E2E38); display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:12px; }
-  .feedfoot { display:flex; align-items:center; gap:6px; padding:10px 12px; font-size:12.5px; font-weight:600; }
-  .vbadge { margin-left:auto; color:var(--green); font-size:11.5px; font-weight:800; display:flex; gap:3px; align-items:center; }
-  .note { background:rgba(255,90,31,.08); border:1.2px solid rgba(255,90,31,.3); border-radius:14px; padding:14px 16px; font-size:14px; }
-  table { width:100%; border-collapse:collapse; font-size:14px; }
+  .fh { display:flex; align-items:center; gap:9px; padding:11px 12px; }
+  .avatar { width:30px; height:30px; border-radius:15px; background:linear-gradient(150deg,#3a2418,#7a3a1c); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; }
+  .fname { font-size:14px; font-weight:700; } .fh small { display:block; color:var(--sub); font-size:11.5px; }
+  .photo { height:150px; background:linear-gradient(135deg,#2a1d3d,#7a3320); position:relative; }
+  .photo .pin { position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.55); border-radius:999px; padding:6px 10px; font-size:12px; font-weight:700; display:flex; gap:6px; align-items:center; }
+  .vchk { width:15px; height:15px; border-radius:50%; background:var(--green); color:#08130d; font-size:9px; font-weight:900; display:inline-flex; align-items:center; justify-content:center; }
+  .strip { margin:11px 12px; background:#111116; border-radius:13px; padding:11px 13px 12px; }
+  .strip-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:9px; }
+  .strip-lbl { font-size:10px; font-weight:800; letter-spacing:1px; color:var(--sub); }
+  .chip { display:flex; align-items:center; gap:5px; background:rgba(140,123,255,.16); border-radius:999px; padding:3px 9px; }
+  .chip .dot { width:6px; height:6px; border-radius:3px; background:var(--whoop); } .chip span { font-size:10.5px; font-weight:800; color:#b8aeff; }
+  .cells { display:flex; align-items:center; }
+  .cell { flex:1; text-align:center; }
+  .cell b { display:block; font-size:18px; font-weight:800; letter-spacing:-.4px; }
+  .cell span { display:block; font-size:9.5px; font-weight:800; letter-spacing:.6px; color:var(--sub); margin-top:1px; }
+  .cdiv { width:1px; height:30px; background:rgba(255,255,255,.1); }
+
+  /* proof block (no-photo verified) */
+  .proof { margin:0; background:var(--tint); border-radius:16px; padding:13px; }
+  .proof-row { display:flex; align-items:center; gap:11px; }
+  .token { width:40px; height:40px; border-radius:12px; background:rgba(53,208,138,.18); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .proof-k { font-size:10px; font-weight:800; letter-spacing:1px; color:var(--sub); }
+  .proof-g { font-size:17px; font-weight:800; margin-top:1px; }
+  .verline { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:800; color:var(--green); margin-top:4px; }
+  .unver { color:var(--sub); }
+
+  .note { background:var(--tint); border:1.2px solid rgba(255,90,31,.3); border-radius:14px; padding:14px 16px; font-size:14px; margin-top:8px; }
+  .note a { color:var(--orange); }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin-top:6px; }
   td, th { text-align:left; padding:10px 12px; border-bottom:1px solid #23232B; vertical-align:top; }
-  th { color:var(--sub); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
-  .ok { color:var(--green); } .no { color:#F87171; }
-  .flow { counter-reset: step; }
-  .flow li { list-style:none; position:relative; padding:0 0 14px 40px; font-size:14.5px; color:#D4D4D8; }
-  .flow li::before { counter-increment: step; content: counter(step); position:absolute; left:0; top:-2px; width:26px; height:26px; border-radius:13px; background:var(--orange); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  th { color:var(--sub); font-size:11px; letter-spacing:1.2px; text-transform:uppercase; }
+  .ok { color:var(--green); font-weight:700; } .no { color:#F87171; font-weight:700; }
+  .flow { counter-reset: step; padding:0; margin:14px 0 0; }
+  .flow li { list-style:none; position:relative; padding:0 0 13px 40px; font-size:14.5px; color:#D4D4D8; }
+  .flow li::before { counter-increment: step; content: counter(step); position:absolute; left:0; top:-1px; width:26px; height:26px; border-radius:13px; background:var(--orange); color:#1B0E06; font-weight:900; font-size:13px; display:flex; align-items:center; justify-content:center; }
 </style>
 </head>
 <body>
 <main>
-  <h1>OneMore<span>Rep</span> × WHOOP — Integration UX</h1>
-  <p class="sub">Prepared for WHOOP app review · OneMoreRep is a private social fitness app: users check in at a gym (GPS + Google Places verified) and friends they explicitly added cheer them on.</p>
+  <h1>Rep<span>Call</span> × WHOOP — Integration UX</h1>
+  <p class="sub">Prepared for WHOOP app review. RepCall is a social fitness app: you prove you worked out (location-verified, optional photo), a small circle of friends sees it, and streaks + friendly nudges keep everyone showing up. Connecting WHOOP is <b>optional</b> and lets a member attach their real workout to a check-in.</p>
 
-  <h2>Why WHOOP</h2>
-  <p>WHOOP workout data is used for exactly one thing: <b>confirming that a recorded
-  workout happened around the time of a gym check-in</b>. A confirmed check-in shows
-  the same verification badge with the source noted ("Verified · WHOOP"). It grants
-  no extra rewards or status — WHOOP data confirms, it never elevates one user above
-  another.</p>
-
-  <h2>Screen 1 · Connecting (Profile tab)</h2>
+  <h2>Step 1 · Connect WHOOP (Settings)</h2>
+  <p class="lead">In Settings, the member taps <b>Connect WHOOP</b>. The standard WHOOP OAuth screen opens; scopes requested are <b>read:workout</b>, <b>read:profile</b>, and <b>offline</b>.</p>
   <div class="row">
     <div class="phone">
-      <div class="screen-title">You tab — before</div>
-      <div class="util">⌚ <div>Connect WHOOP<small>workouts confirm your check-ins</small></div></div>
+      <div class="cap">Settings · before</div>
+      <div class="util"><div class="ic">⌚</div><div>Connect WHOOP<small>pull your real workout stats</small></div><div class="state off">CONNECT</div></div>
     </div>
     <div class="phone">
-      <div class="screen-title">You tab — after OAuth</div>
-      <div class="util">⌚ <div>WHOOP connected<small>tap anytime to disconnect</small></div></div>
+      <div class="cap">Settings · after OAuth</div>
+      <div class="util"><div class="ic">⌚</div><div>WHOOP<small>connected · tap to disconnect</small></div><div class="state on">ON</div></div>
     </div>
   </div>
-  <ol class="flow" style="margin-top:16px">
-    <li>User taps "Connect WHOOP" → standard WHOOP OAuth page opens in the browser (scopes: read:workout, read:profile, offline).</li>
-    <li>Tokens are exchanged and stored <b>server-side only</b> (Supabase edge function + locked table). The mobile app never sees or stores tokens.</li>
+  <ol class="flow">
+    <li>Tokens are exchanged and stored <b>server-side only</b> (a Supabase edge function + a locked table). The mobile app never sees or stores WHOOP tokens.</li>
     <li>Disconnecting is one tap and deletes our stored tokens immediately.</li>
   </ol>
 
-  <h2>Screen 2 · The result (friend feed)</h2>
+  <h2>Step 2 · Attach your workout to a check-in</h2>
+  <p class="lead">After checking in, the member taps <b>Add workout stats → Pull from WHOOP</b>. We fetch their most recent WHOOP workout and read its <b>active calories</b> and <b>day strain</b>. Numbers are pulled straight from WHOOP, never typed in, so they can't be faked.</p>
   <div class="row">
     <div class="phone">
-      <div class="screen-title">Check-in without WHOOP</div>
-      <div class="feedcard">
-        <div class="feedhead"><div class="avatar">C</div> Charbel</div>
-        <div class="photo">user's gym photo</div>
-        <div class="feedfoot">🏋️ checked in at Rebalance DXB <span class="vbadge">✓ Verified</span></div>
-      </div>
-    </div>
-    <div class="phone">
-      <div class="screen-title">Check-in confirmed by WHOOP</div>
-      <div class="feedcard">
-        <div class="feedhead"><div class="avatar">C</div> Charbel</div>
-        <div class="photo">user's gym photo</div>
-        <div class="feedfoot">🏋️ checked in at Rebalance DXB <span class="vbadge">✓ Verified · WHOOP</span></div>
+      <div class="cap">Add stats sheet</div>
+      <div class="sheet">
+        <div class="st">Add your workout stats</div>
+        <div class="ssub">Pulled from your wearable, so they're real.</div>
+        <div class="srcbtn"><div class="ic">⌚</div><div><b>Pull from WHOOP</b><small>Calories · strain</small></div><div class="dl">⬇</div></div>
       </div>
     </div>
   </div>
-  <p style="margin-top:14px">That badge suffix is the <b>entire visible footprint</b> of WHOOP data in the app.
-  No strain, recovery, HR, sleep, or any other metric is displayed, stored, or used.</p>
 
-  <h2>Data usage</h2>
+  <h2>Step 3 · It shows on the friend feed</h2>
+  <p class="lead">The pulled stats appear as a quiet <b>"This session"</b> strip on the check-in, with a WHOOP source chip. This is the visible footprint of WHOOP data in the app: a member's own session stats on their own post, seen only by friends they've added.</p>
+  <div class="row">
+    <div class="phone">
+      <div class="cap">Photo check-in + WHOOP stats</div>
+      <div class="feedcard">
+        <div class="fh"><div class="avatar">CN</div><div><div class="fname">Charbel</div><small>@charbel · 12m</small></div></div>
+        <div class="photo"><div class="pin">📍 Rebalance DXB <span class="vchk">✓</span></div></div>
+        <div class="strip">
+          <div class="strip-top"><span class="strip-lbl">THIS SESSION</span><div class="chip"><span class="dot"></span><span>WHOOP</span></div></div>
+          <div class="cells"><div class="cell"><b>612</b><span>CAL</span></div><div class="cdiv"></div><div class="cell"><b>14.2</b><span>STRAIN</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Step 4 · A real workout can verify a check-in</h2>
+  <p class="lead">A check-in away from a recognised venue posts as <b>Unverified</b>. If the member's connected WHOOP workout clears a simple effort bar (<b>≥ 10 day strain or ≥ 500 active calories</b>), that same-day check-in is upgraded to <b>Verified</b>. WHOOP confirms genuine effort; it never grants status over other users.</p>
+  <div class="row">
+    <div class="phone">
+      <div class="cap">Before · no venue detected</div>
+      <div class="feedcard"><div class="fh"><div class="avatar">CN</div><div><div class="fname">Charbel</div><small>@charbel · 2m</small></div></div>
+        <div class="proof"><div class="proof-row"><div class="token" style="background:rgba(255,90,31,.18)">💥</div><div><div class="proof-k">CHECKED IN AT</div><div class="proof-g">Home workout</div><div class="verline unver">◎ Unverified</div></div></div></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="cap">After · WHOOP workout cleared the bar</div>
+      <div class="feedcard"><div class="fh"><div class="avatar">CN</div><div><div class="fname">Charbel</div><small>@charbel · 2m</small></div></div>
+        <div class="proof"><div class="proof-row"><div class="token">🏋️</div><div><div class="proof-k">CHECKED IN AT</div><div class="proof-g">Home workout</div><div class="verline">✓ Verified</div></div><div class="chip" style="margin-left:auto"><span class="dot"></span><span>WHOOP</span></div></div>
+          <div class="strip" style="margin:12px 0 0"><div class="cells"><div class="cell"><b>612</b><span>CAL</span></div><div class="cdiv"></div><div class="cell"><b>14.2</b><span>STRAIN</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>What WHOOP data we use</h2>
   <table>
     <tr><th>WHOOP data</th><th>Used?</th><th>Purpose</th></tr>
-    <tr><td>Workout start/end times</td><td class="ok">Yes</td><td>Time-overlap match against the user's own gym check-in</td></tr>
-    <tr><td>Workout id</td><td class="ok">Yes</td><td>Stored once to prevent one workout confirming two check-ins</td></tr>
-    <tr><td>Profile (user id)</td><td class="ok">Yes</td><td>Routing incoming webhooks to the right account</td></tr>
-    <tr><td>Strain / HR / calories / sleep / recovery</td><td class="no">No</td><td>Never read, stored, or displayed</td></tr>
+    <tr><td>Workout: active calories, day strain</td><td class="ok">Yes</td><td>Shown as the member's own "This session" stats on their check-in; used to verify their own check-in</td></tr>
+    <tr><td>Workout: start / end time, workout id</td><td class="ok">Yes (read)</td><td>Read to find the member's most recent WHOOP session</td></tr>
+    <tr><td>Basic profile (user id, name)</td><td class="ok">Yes</td><td>Link the WHOOP account to the member's RepCall account</td></tr>
+    <tr><td>Recovery, Sleep, Cycles, Body measurement</td><td class="no">No</td><td>Not requested, not read, not stored, not displayed</td></tr>
   </table>
 
-  <h2>Privacy & security</h2>
+  <h2>Privacy &amp; security</h2>
   <div class="note">
-    Tokens live exclusively server-side (never on-device) · workout confirmation is
-    computed server-side and cannot be spoofed by the client · data is visible only to
-    friends the user explicitly added · disconnect deletes tokens instantly · webhook
-    signatures verified (HMAC) · full policy:
-    <a style="color:var(--orange)" href="privacy.html">privacy policy</a>.
+    WHOOP tokens live exclusively server-side (never on-device) · a member's WHOOP stats are visible only to friends they explicitly added · WHOOP data is <b>never sold or shared for advertising</b> · disconnecting WHOOP or deleting your RepCall account deletes the data · full detail in our
+    <a href="privacy-policy.html">Privacy Policy</a>.
   </div>
 </main>
 </body>
