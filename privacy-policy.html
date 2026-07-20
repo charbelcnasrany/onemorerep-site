@@ -114,7 +114,7 @@
   <span class="brandmark"><span class="dot"></span> RepCall</span>
   <h1>Privacy Policy</h1>
   <p class="dates"><strong>Effective date:</strong> 14 July 2026</p>
-  <p class="dates"><strong>Last updated:</strong> 14 July 2026</p>
+  <p class="dates"><strong>Last updated:</strong> 19 July 2026</p>
 </header>
 
 <p class="lead">RepCall is a social fitness app: you prove you showed up to work out, a small circle of friends sees it, and everyone keeps each other going. Because that involves your location, photos, and sometimes health data, we take privacy seriously. This policy explains what we collect, why, who we share it with, how long we keep it, and the rights you have under the laws of the UAE, the EU/UK (GDPR), and California (CCPA/CPRA).</p>
@@ -132,6 +132,7 @@
     <li><a href="#legal-bases">Legal bases (GDPR)</a></li>
     <li><a href="#how-we-use">How we use your data</a></li>
     <li><a href="#sharing">Who we share with</a></li>
+    <li><a href="#contacts">Finding friends from your contacts</a></li>
     <li><a href="#transfers">International transfers</a></li>
     <li><a href="#retention">How long we keep it</a></li>
     <li><a href="#your-rights">Your rights</a></li>
@@ -147,7 +148,7 @@
 <h2 id="who-we-are">1. Who we are</h2>
 <p>RepCall ("RepCall", "we", "us", "our") is a mobile application and related services (the "Service"). For the purposes of the GDPR, the UK GDPR, the UAE Personal Data Protection Law, and other data-protection laws, RepCall is the <strong>data controller</strong> of the personal data described in this policy.</p>
 <p>The best way to reach us about this policy or your data is by email at <a href="mailto:hello@repcall.app">hello@repcall.app</a>.</p>
-<p>This policy applies to the RepCall mobile app (distributed through the Apple App Store, and, if listed, Google Play) and any related services that link to it. It does not cover third-party services you may connect to RepCall (for example WHOOP), which have their own privacy policies.</p>
+<p>This policy applies to the RepCall mobile app (distributed through the Apple App Store, and, if listed, Google Play) and any related services that link to it. It does not cover third-party services you may connect to RepCall (for example WHOOP), or the third-party apps whose workouts can reach RepCall through Apple Health or Android's Health Connect (for example Garmin, Samsung Health, or Fitbit), each of which has its own privacy policy.</p>
 
 <h2 id="what-we-collect">2. What we collect &amp; why</h2>
 <p>We only collect data that supports the core loop of the app: checking in, proving it, and sharing it with your chosen friends. We do not buy personal data from third parties, and we do not run advertising or analytics SDKs. The table below lists each category, examples, why we collect it, and the legal basis we rely on under the GDPR (see <a href="#legal-bases">Section 4</a> for what those bases mean).</p>
@@ -184,8 +185,14 @@
     </tr>
     <tr>
       <td><strong>Health &amp; wearable data</strong> <span class="pill">sensitive</span></td>
-      <td>If you connect WHOOP: workout metrics, specifically your active calories and day strain, plus basic WHOOP profile information (such as your WHOOP user identifier and name) used solely to link your WHOOP account to your RepCall account. Apple Health / Apple Watch is planned and, if enabled, would work the same way.</td>
-      <td>To display your session stats and help confirm a check-in. You connect a wearable only if you choose to; you can disconnect it any time in Settings.</td>
+      <td>Only if you choose to connect a source, we read a small, fixed set of workout metrics:
+        <ul style="margin:6px 0 0; padding-left:18px;">
+          <li><strong>WHOOP</strong> (all platforms): your active calories and day strain, plus basic WHOOP profile information (such as your WHOOP user identifier and name) used solely to link your WHOOP account to your RepCall account. WHOOP data is retrieved through our secure server.</li>
+          <li><strong>Apple Health / HealthKit</strong> (iOS only, <strong>read-only</strong>): your active calories, steps, and workout type and duration.</li>
+          <li><strong>Health Connect</strong> (Android only, <strong>read-only</strong>): your active calories, steps, and workout type and duration. Health Connect is Android's health hub, so these workouts may have originally been recorded by another app such as <strong>Garmin, Samsung Health, or Fitbit</strong>.</li>
+        </ul>
+        We do <strong>not</strong> read your heart rate or any medical data, and we <strong>never write anything back</strong> to Apple Health or Health Connect. Apple Health and Health Connect are read <strong>on your device</strong>; only the specific metrics you attach to a check-in (calories, steps, workout type, and duration) are sent to our servers.</td>
+      <td>To display your workout stats on a check-in and to power <strong>"verification-by-effort"</strong>: a check-in that wasn't confirmed by location can still earn a "Verified" badge if the workout clears a set effort threshold (for example 500 active calories, 10,000 steps, or a WHOOP day strain of 10). You connect a source only if you choose to, and can disconnect it any time in Settings. We never use this data for advertising or marketing, and we never sell or share it.</td>
       <td>Explicit consent (special-category data).</td>
     </tr>
     <tr>
@@ -207,6 +214,12 @@
       <td>Consent (notification permission); legitimate interests.</td>
     </tr>
     <tr>
+      <td><strong>Contact matches</strong> <span class="pill">only if you turn it on</span></td>
+      <td>If, and only if, you choose to use "Find friends from your contacts", one-way <strong>hashes</strong> (SHA-256 fingerprints) of the email addresses in your device's contacts. We never receive your contacts' names, phone numbers, or actual email addresses, and we never store your address book.</td>
+      <td>To check, in a privacy-preserving way, whether any of your contacts already use RepCall, so you can send them a friend request. Non-matching hashes tell us nothing and are discarded. See <a href="#contacts">Section 7</a>.</td>
+      <td>Consent (you switch the feature on).</td>
+    </tr>
+    <tr>
       <td><strong>Technical &amp; session data</strong></td>
       <td>Your login session (stored on your device), and basic data needed to operate the app and its backend (e.g. timestamps of check-ins).</td>
       <td>To keep you signed in and operate and secure the Service.</td>
@@ -223,9 +236,9 @@
 <ul>
   <li><strong>Precise location.</strong> Captured only at the moment you check in, used only to confirm a nearby workout venue, and <strong>never displayed to other users or shown on a map</strong>. Friends only ever see a venue name and a verified/unverified badge. We do not track your location in the background.</li>
   <li><strong>Photos and video.</strong> Captured live in the app (never pulled from your camera roll for check-ins), stored in private buckets, and disclosed only to the specific friends you have accepted, through links that expire. Your Progress Vault photos are visible to <strong>you alone</strong>.</li>
-  <li><strong>Health &amp; wearable data.</strong> This is "special category" data under the GDPR and "sensitive personal information" under California law. We process it <strong>only with your explicit consent</strong>, only if you connect a wearable, and only to show your stats and help verify a check-in. When you connect WHOOP, the login (OAuth) tokens that access your WHOOP account are held <strong>only on our secure server and are never exposed to the app on your phone</strong>. Disconnecting a wearable in Settings stops further collection and removes the stored connection.</li>
+  <li><strong>Health &amp; wearable data.</strong> This is "special category" data under the GDPR and "sensitive personal information" under California law. We process it <strong>only with your explicit consent</strong>, only if you connect a source, and only to show your workout stats and to run "verification-by-effort" (see Section 2). The data set is deliberately small: <strong>active calories, steps, and workout type and duration</strong> (from Apple Health or Health Connect) and <strong>active calories and day strain</strong> (from WHOOP). We do <strong>not</strong> read your heart rate or any medical data. Our access to Apple Health and Health Connect is <strong>read-only</strong> — we never write data back to them — and the raw health store is read <strong>on your device</strong>: only the specific metrics you attach to a check-in reach our servers. On Android, Health Connect is an aggregator, so a workout may have originally been recorded by another app such as Garmin, Samsung Health, or Fitbit. When you connect WHOOP, the login (OAuth) tokens that access your WHOOP account are held <strong>only on our secure server and are never exposed to the app on your phone</strong>. We never use health data for advertising or marketing, and we never sell or "share" it. Disconnecting a source in Settings stops further collection; for Apple Health and Health Connect you can also revoke RepCall's access at any time from your operating system's own health settings.</li>
 </ul>
-<p>We do <strong>not</strong> use your sensitive data to build advertising profiles, and we do not sell or "share" it. Under California law you have the right to limit our use of sensitive personal information, and we already limit it to providing the Service you asked for (see <a href="#your-rights">Section 9</a>).</p>
+<p>We do <strong>not</strong> use your sensitive data to build advertising profiles, and we do not sell or "share" it. Under California law you have the right to limit our use of sensitive personal information, and we already limit it to providing the Service you asked for (see <a href="#your-rights">Section 10</a>).</p>
 
 <h2 id="legal-bases">4. Legal bases for processing (GDPR / UK GDPR)</h2>
 <p>If you are in the EU, the UK, or another region whose law requires it, we rely on the following legal bases:</p>
@@ -242,7 +255,7 @@
   <li>create, secure, and operate your account;</li>
   <li>verify check-ins against a real workout venue;</li>
   <li>run the friend feed, reactions, nudges, live presence, streaks, and Influence;</li>
-  <li>display your workout stats and, if you connect a wearable, confirm workouts;</li>
+  <li>display your workout stats and, if you connect a wearable or your phone's health app, confirm ("verify") a check-in when the workout clears a set effort threshold;</li>
   <li>let you privately track progress in the Vault;</li>
   <li>send notifications you have enabled;</li>
   <li>keep the community safe (blocking, reporting, moderation of reported content);</li>
@@ -266,7 +279,7 @@
     <tr>
       <td><strong>Supabase</strong></td>
       <td>Database, authentication, and file storage: the backend that stores your account, check-ins, and media.</td>
-      <td>Account &amp; identity, check-in data and coordinates, photos/videos, Vault, social activity, wearable connection records, push tokens.</td>
+      <td>Account &amp; identity, check-in data and coordinates, photos/videos, Vault, social activity, wearable connection records and the workout stats you attach to a check-in, push tokens.</td>
     </tr>
     <tr>
       <td><strong>Google (Places API)</strong></td>
@@ -286,7 +299,7 @@
   </tbody>
 </table>
 </div>
-<p>Each processor is bound by a data-processing agreement (or equivalent terms) restricting their use of the data to providing their service to us. We do not use any advertising networks, ad SDKs, or third-party analytics/tracking tools in the app.</p>
+<p>Each processor is bound by a data-processing agreement (or equivalent terms) restricting their use of the data to providing their service to us. We do not use any advertising networks, ad SDKs, or third-party analytics/tracking tools in the app. <strong>Apple Health and Android's Health Connect are on-device sources we read from with your permission, not recipients we send your data to</strong> — we read the metrics on your phone and only the numbers you attach to a check-in are stored with us.</p>
 
 <h3>The app platforms (Apple / Google)</h3>
 <p>RepCall is distributed through the Apple App Store and may also be listed on Google Play. When you download the app, make in-app purchases (if any are offered in the future), or use platform features, the platform (Apple or Google) processes certain data — such as your account ID, purchase, and basic device information — under its own privacy policy; see <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a> and <a href="https://policies.google.com/privacy">Google's privacy policy</a>. We do not control the platforms' own processing.</p>
@@ -294,12 +307,24 @@
 <h3>Legal, safety, and business transfers</h3>
 <p>We may disclose data if required by applicable law or a valid legal request, to protect the rights, property, or safety of our users or RepCall, or to enforce our terms. If RepCall is involved in a merger, acquisition, or sale of assets, personal data may be transferred as part of that transaction, subject to this policy.</p>
 
-<h2 id="transfers">7. International data transfers</h2>
+<h2 id="contacts">7. Finding friends from your contacts</h2>
+<p>RepCall has an optional "Find friends from your contacts" feature that helps you find people you already know who are on the app. It is <strong>off until you choose to use it</strong>, and it is built so that your address book never leaves your device in a readable form.</p>
+<p>Here is exactly what happens if you tap it:</p>
+<ul>
+  <li><strong>You decide first.</strong> Before we read anything, we show you a screen explaining what the feature does. Nothing happens unless you tap to continue and grant your device's contacts permission. You can skip it, and you can use every other part of RepCall without ever turning it on.</li>
+  <li><strong>We read email addresses only.</strong> On your device, we read the <strong>email addresses</strong> in your contacts. We do <strong>not</strong> read or use your contacts' names, phone numbers, photos, or any other detail. (RepCall accounts are based on email, so email is all that can be matched.)</li>
+  <li><strong>Nothing readable is uploaded.</strong> Each email address is normalised and converted on your device into a one-way <strong>SHA-256 hash</strong> — a scrambled fingerprint that cannot be turned back into the original email. We send <strong>only those hashes</strong> to our server. We never send, and never store, your contacts' actual email addresses, names, or numbers, and we never save your address book anywhere.</li>
+  <li><strong>Only matches come back.</strong> Our server compares your hashes against hashes of the sign-up emails of existing RepCall users and returns <strong>only the profiles that match</strong>. Hashes that do not match reveal nothing about your contacts and are not stored.</li>
+  <li><strong>You are still in control.</strong> A match just lets you <em>send a friend request</em>. As with any friend request, the other person must accept it, and nothing of theirs is shared with you (and nothing of yours with them) until they do. Being in your contacts never automatically connects you to anyone.</li>
+</ul>
+<p><strong>How to decline or stop.</strong> You can decline the feature on the intro screen, or never open it at all. If you have used it, the matching is a one-off lookup — we do not keep a copy of your contacts to re-scan. You can also revoke RepCall's access to your contacts at any time in your device's settings (iOS: Settings › Privacy &amp; Security › Contacts; Android: Settings › Apps › RepCall › Permissions), which prevents any future lookup. Because we do not store your contacts, there is no contacts list on our side to delete; the hashes we receive for a lookup are used only to return matches and are not retained as a record of your address book.</p>
+
+<h2 id="transfers">8. International data transfers</h2>
 <p>RepCall is based in the United Arab Emirates and may have users in the UAE, the EU/UK, California, and elsewhere. Our processors may store or process data in locations outside your country, including outside the UAE and the EU/UK.</p>
 <p>Our primary backend is hosted in the following region: Asia Pacific (Sydney, Australia). Google, WHOOP, and Expo may process data in the United States and other countries.</p>
 <p>Where personal data of individuals in the EU/UK is transferred to a country without an adequacy decision, we rely on appropriate safeguards such as the European Commission's <strong>Standard Contractual Clauses</strong> (and the UK International Data Transfer Addendum). For transfers out of the UAE, we take steps consistent with the UAE Personal Data Protection Law's cross-border transfer requirements. You can request more information about these safeguards at <a href="mailto:hello@repcall.app">hello@repcall.app</a>.</p>
 
-<h2 id="retention">8. How long we keep your data</h2>
+<h2 id="retention">9. How long we keep your data</h2>
 <ul>
   <li><strong>While your account is active,</strong> we keep the data needed to run the Service (account, check-ins, media, social activity).</li>
   <li><strong>When you delete your account</strong> (Settings → Delete account), we permanently delete or irreversibly disconnect the personal data associated with it, including your check-ins, streak, photos and videos, Vault, friendships, reactions, and nudges. Residual copies in encrypted backups are purged on our normal backup cycle, within 30 days.</li>
@@ -308,7 +333,7 @@
 </ul>
 <p>You do not need to delete your whole account to remove a single item: you can delete individual check-ins and Vault photos from within the app.</p>
 
-<h2 id="your-rights">9. Your rights</h2>
+<h2 id="your-rights">10. Your rights</h2>
 
 <h3>EU / UK (GDPR)</h3>
 <p>Subject to conditions in the law, you have the right to:</p>
@@ -339,24 +364,24 @@
 
 <div class="note"><strong>Please note:</strong> the Executive Regulations to the UAE PDPL had not yet been issued at the time this policy was written, and some procedures for exercising PDPL rights may be clarified once they are. We will follow the applicable procedures once in force.</div>
 
-<h2 id="exercise">10. How to exercise your rights</h2>
+<h2 id="exercise">11. How to exercise your rights</h2>
 <p>Many rights can be exercised directly in the app: edit your profile in Settings, delete individual check-ins or Vault photos, disconnect a wearable, block users, or delete your entire account (Settings → Delete account).</p>
 <p>For anything else (access, portability, correction, or a formal request), email us at <a href="mailto:hello@repcall.app">hello@repcall.app</a>. To protect your account we may need to verify your identity before acting on a request. We will respond within the timeframe required by applicable law (generally one month under the GDPR and 45 days under the CCPA/CPRA, each extendable where the law permits). Exercising your rights is free unless a request is manifestly unfounded or excessive.</p>
 <p>RepCall has not appointed a Data Protection Officer, because it does not carry out, as a core activity, large-scale regular monitoring or large-scale processing of special-category data of the kind that makes a DPO mandatory (GDPR Art. 37). Where the law requires it — for example, an EU or UK "Article 27" representative for a controller established outside the EU/UK that offers services to people there — we will designate one and publish the contact details here. In the meantime, you can raise any GDPR or UK GDPR matter directly with us at <a href="mailto:hello@repcall.app">hello@repcall.app</a>.</p>
 
-<h2 id="security">11. Security</h2>
+<h2 id="security">12. Security</h2>
 <p>We protect your data with measures including: encryption in transit (HTTPS/TLS); passwords stored only as secure hashes by our authentication provider; row-level security rules in our database so users can only reach data they are permitted to see; private storage buckets for photos and videos served through short-lived, expiring links; and keeping sensitive credentials (such as wearable OAuth tokens and third-party API keys) on the server only, never in the app on your device. No method of transmission or storage is 100% secure, but we work to protect your data and to limit access to it.</p>
 
-<h2 id="children">12. Children</h2>
+<h2 id="children">13. Children</h2>
 <p>RepCall is intended for adults. <strong>The Service is for users aged 18 and over.</strong> We do not knowingly collect personal data from anyone under 18, and the Service is not directed to children, including, without limitation, children under 13 (COPPA) or under 16. We ask users to confirm they are 18 or older before using features that involve photos. If you believe someone under 18 has provided us personal data, contact <a href="mailto:hello@repcall.app">hello@repcall.app</a> and we will delete it.</p>
 
-<h2 id="changes">13. Changes to this policy</h2>
+<h2 id="changes">14. Changes to this policy</h2>
 <p>We may update this policy from time to time. When we do, we will change the "Last updated" date above, post the new version at this page (repcall.app/privacy), and, for material changes, provide a more prominent notice in the app or by email before the change takes effect. Your continued use of the Service after an update means you accept the revised policy, to the extent permitted by law.</p>
 
-<h2 id="law">14. Governing law</h2>
+<h2 id="law">15. Governing law</h2>
 <p>This policy and any dispute relating to it are governed by the laws of the Emirate of Dubai and the applicable federal laws of the United Arab Emirates, without prejudice to any mandatory data-protection rights you have under the laws of your own country of residence (such as the GDPR or the CCPA/CPRA). The courts of Dubai, UAE shall have jurisdiction, subject to any non-waivable rights you have to bring proceedings in your local courts.</p>
 
-<h2 id="contact">15. Contact us</h2>
+<h2 id="contact">16. Contact us</h2>
 <p>For any privacy question, request, or complaint, contact us at:</p>
 <p><strong>RepCall</strong><br />
 Email: <a href="mailto:hello@repcall.app">hello@repcall.app</a></p>
