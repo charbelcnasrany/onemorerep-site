@@ -188,12 +188,14 @@
     {key:'verified',    label:'Verified',    color:'#F5B301'},
     {key:'wvcc',        label:'North Star',  color:'#FF8A3D'},
     {key:'active_users',label:'Active/day',  color:'#4ade80', avg:true},
+    {key:'opens',       label:'App opens',   color:'#fb923c'},
+    {key:'openers',     label:'Openers/day', color:'#2dd4bf', avg:true},
     {key:'new_users',   label:'New users',   color:'#60a5fa'},
     {key:'reactions',   label:'Reactions',   color:'#c084fc'},
     {key:'nudges',      label:'Nudges',      color:'#f472b6'},
     {key:'with_media',  label:'With media',  color:'#22d3ee'}
   ];
-  var SUM_KEYS=['checkins','verified','with_media','photo','video','wvcc','new_users','reactions','nudges','new_friendships'];
+  var SUM_KEYS=['checkins','verified','with_media','photo','video','wvcc','new_users','reactions','nudges','opens','new_friendships'];
   function isAvg(k){for(var i=0;i<METRICS.length;i++)if(METRICS[i].key===k)return !!METRICS[i].avg;return false;}
 
   // Current window from the full daily[] for a filter state.
@@ -409,6 +411,8 @@
     var html='';
     html+=kpiCard('Check-ins', fmt(sum(cur,'checkins')), deltaHtml(sum(cur,'checkins'),sum(prev,'checkins')));
     html+=kpiCard('Verified rate', fmtPct(verifiedPct(cur)), deltaHtml(verifiedPct(cur),verifiedPct(prev),{pp:true}));
+    html+=kpiCard('App opens', fmt(sum(cur,'opens')), deltaHtml(sum(cur,'opens'),sum(prev,'opens')));
+    html+=kpiCard('Openers / day', fmt(mean(cur,'openers')), 'peak '+fmt(Math.max(0,...cur.map(function(r){return n(r.openers);})))+' · '+deltaHtml(mean(cur,'openers'),mean(prev,'openers')));
     html+=kpiCard('Active / day', fmt(mean(cur,'active_users')), 'peak '+fmt(Math.max(0,...cur.map(function(r){return n(r.active_users);})))+' · '+deltaHtml(mean(cur,'active_users'),mean(prev,'active_users')));
     html+=kpiCard('New users', fmt(sum(cur,'new_users')), deltaHtml(sum(cur,'new_users'),sum(prev,'new_users')));
     html+=kpiCard('Reactions', fmt(sum(cur,'reactions')), deltaHtml(sum(cur,'reactions'),sum(prev,'reactions')));
@@ -521,7 +525,7 @@
   function dayTable(cur){
     var rows=binRows(cur, state.gran).slice();      // ascending
     var el=h('<div class="tablewrap anim"></div>');
-    var cols=[['checkins','Check-ins'],['verified','Verified'],['active_users','Active'],['new_users','New'],['reactions','Reactions'],['nudges','Nudges']];
+    var cols=[['checkins','Check-ins'],['verified','Verified'],['opens','Opens'],['active_users','Active'],['new_users','New'],['reactions','Reactions'],['nudges','Nudges']];
     var thead='<thead><tr><th>'+(state.gran==='week'?'Week of':'Day')+'</th>'+cols.map(function(c){return '<th>'+c[1]+'</th>';}).join('')+'</tr></thead>';
     // build newest-first, arrow = vs the chronologically previous row
     var body='';
